@@ -11,7 +11,13 @@ class OverloadTest {
     }
 
     public static void say(Person person) {
+        System.out.println("Person say");
         person.say();
+    }
+
+    public static void say(Student student) {
+        System.out.println("Student say");
+        student.say();
     }
 
     static class Person {

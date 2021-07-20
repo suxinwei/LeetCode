@@ -25,6 +25,63 @@ class ByteTest {
         String tag = "ab";
         int lastIndexOf = s.lastIndexOf(tag);
         System.out.println(s.substring(lastIndexOf + tag.length(), s.length() - 1));
+
+
+        System.out.println((char) 1);
+        String vendor = "" + (char) 0 + (char) 0 + (char) 0 + (char) 1;
+        System.out.println(vendor);
+        System.out.println(vendor.length());
+        System.out.println(Arrays.toString(vendor.getBytes()));
+
+        byte[] x = intToBytes2(49153);
+        for (byte b : x) {
+            System.out.println(b);
+        }
+
+        System.out.println("发送mp4:" + Arrays.toString("mp4".getBytes()));
+        System.out.println("发送mp3:" + Arrays.toString("mp3".getBytes()));
+        System.out.println("发送reliable:" + Arrays.toString("发送reliable".getBytes()));
+        System.out.println("发送cmd:" + Arrays.toString("发送cmd".getBytes()));
+
     }
 
+    /**
+     * 转换4byte到int
+     */
+    public static int bytesToInt(byte[] b) {
+        return b[3] & 0xFF |
+                (b[2] & 0xFF) << 8 |
+                (b[1] & 0xFF) << 16 |
+                (b[0] & 0xFF) << 24;
+    }
+
+    /**
+     * 转换2byte到int
+     */
+    public static int bytesToInt2(byte[] b) {
+        return b[0] & 0xFF | (b[1] & 0xFF) << 8;
+//        return b[1] & 0xFF | (b[0] & 0xFF) << 8;
+    }
+
+    /**
+     * 转换int到4byte
+     */
+    public static byte[] intToBytes(int a) {
+        return new byte[]{
+                (byte) ((a >> 24) & 0xFF),
+                (byte) ((a >> 16) & 0xFF),
+                (byte) ((a >> 8) & 0xFF),
+                (byte) (a & 0xFF)
+        };
+    }
+
+    /**
+     * 转换int到2byte
+     */
+    public static byte[] intToBytes2(int a) {
+        return new byte[]{
+                (byte) (a & 0xFF),
+                (byte) ((a >> 8) & 0xFF)
+        };
+    }
 }
