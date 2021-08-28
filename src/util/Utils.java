@@ -1,6 +1,23 @@
+package util;
+
 import java.util.List;
 
-class Utils {
+public class Utils {
+
+    public static void printArray(byte[] arr) {
+        if (arr == null) {
+            System.out.println("数组为null");
+            return;
+        }
+        if (arr.length == 0) {
+            System.out.println("数组empty");
+            return;
+        }
+        for (int i : arr) {
+            System.out.println(i);
+        }
+    }
+
     public static void printArray(int[] arr) {
         if (arr == null) {
             System.out.println("数组为null");

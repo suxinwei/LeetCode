@@ -1,21 +1,11 @@
 package test;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Field;
-import java.security.PublicKey;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.SimpleFormatter;
 
 import test.bean.PlayBackFileInfo;
 
@@ -142,24 +132,6 @@ class test {
         System.out.println(s);
     }
 
-    static class Person {
-        Integer age;
-        String name;
-
-        public Person(Integer age, String name) {
-            this.age = age;
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return "Person{" +
-                    "age=" + age +
-                    ", name='" + name + '\'' +
-                    '}';
-        }
-    }
-
     public static List<PlayBackFileInfo> mergePlayBackFileEvent(List<PlayBackFileInfo> playBackFileInfos) {
         List<PlayBackFileInfo> mergePlayBackFileInfoList = new ArrayList<>();
         PlayBackFileInfo lastPlayBackFileInfo = null;
@@ -180,6 +152,24 @@ class test {
             mergePlayBackFileInfoList.add(lastPlayBackFileInfo);
         }
         return mergePlayBackFileInfoList;
+    }
+
+    static class Person {
+        Integer age;
+        String name;
+
+        public Person(Integer age, String name) {
+            this.age = age;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "age=" + age +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
     }
 
     static class TestRunnable implements Runnable {

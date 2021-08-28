@@ -1,3 +1,5 @@
+import util.Utils;
+
 /**
  * created by suxinwei at 2019-04-17
  * description: https://leetcode.com/problems/remove-element/

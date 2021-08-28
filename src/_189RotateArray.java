@@ -1,3 +1,5 @@
+import util.Utils;
+
 /**
  * created by suxinwei at 2019-05-15
  * description: https://leetcode.com/problems/rotate-array/
@@ -27,8 +29,25 @@ class _189RotateArray {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
         int k = 3;
-        rotate2(nums, k);
+        rotate(nums, k);
         Utils.printArray(nums);
+    }
+
+    public static void rotate4(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    public static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
     }
 
     public static void rotate3(int[] nums, int k) {
@@ -54,33 +73,33 @@ class _189RotateArray {
     }
 
     public static void rotate(int[] nums, int k) {
-        if (k == 0) {
-            return;
-        }
-        int length = nums.length;
-
-        for (int i = length - 1; i > k - 1; i--) {
-            int j = (i + k) % length;
-            nums[i] = nums[j];
-        }
-
-        k = k % length;
-        for (int i = 0; i < length; i++) {
-            int temp = nums[i];
-            nums[i] = nums[length - k];
+        k = k % nums.length;
+        int count = 0;
+        for (int start = 0; count < nums.length; start++) {
+            int current = start;
+            int prev = nums[start];
+            do {
+                int next = (current + k) % nums.length;
+                int temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+                current = next;
+                count++;
+            } while (start != current);
         }
     }
 
     public static void rotate2(int[] nums, int k) {
         int length = nums.length;
         k = k % length;
-        int temp;
+        int temp, previous;
         for (int i = 0; i < k; i++) {
-            temp = nums[length - 1];
-            for (int j = length - 1; j > 0; j--) {
-                nums[j] = nums[j - 1];
+            previous = nums[length - 1];
+            for (int j = 0; j < length; j++) {
+                temp = nums[j];
+                nums[j] = previous;
+                previous = temp;
             }
-            nums[0] = temp;
         }
     }
 }
