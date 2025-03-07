@@ -2,7 +2,7 @@ import util.Utils;
 
 /**
  * created by suxinwei at 2019-05-15
- * description: https://leetcode.com/problems/rotate-array/
+ * description: https://leetcode.cn/problems/rotate-array/
  * 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
  * <p>
  * 示例 1:

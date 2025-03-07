@@ -2,7 +2,7 @@ import util.Utils;
 
 /**
  * created by suxinwei at 2019-04-18
- * description: https://leetcode.com/problems/plus-one/
+ * description: https://leetcode.cn/problems/plus-one/
  * 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
  * <p>
  * 最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
