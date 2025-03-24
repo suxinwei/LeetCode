@@ -1,3 +1,5 @@
+import util.ListNode;
+
 /*
  *
  * created by suxinwei at 2019/4/2
@@ -101,14 +103,5 @@ class _002AddTwoNums {
             current.next = new ListNode(quotient);
         }
         return listNode;
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

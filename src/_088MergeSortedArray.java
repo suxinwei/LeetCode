@@ -24,7 +24,7 @@ class _088MergeSortedArray {
         int m = 5;
         int[] nums2 = {3};
         int n = 1;
-        merge(nums1, m, nums2, n);
+        merge3(nums1, m, nums2, n);
         Utils.printArray(nums1);
     }
 
@@ -49,5 +49,44 @@ class _088MergeSortedArray {
         nums1[index] = num2;
     }
 
+    public static void merge2(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = 0, p2 = 0;
+        int[] sorted = new int[m + n];
+        int cur;
+        while (p1 < m || p2 < n) {
+            if (p1 == m) {
+                cur = nums2[p2++];
+            } else if (p2 == n) {
+                cur = nums1[p1++];
+            } else if (nums1[p1] < nums2[p2]) {
+                cur = nums1[p1++];
+            } else {
+                cur = nums2[p2++];
+            }
+            sorted[p1 + p2 - 1] = cur;
+        }
+        for (int i = 0; i != m + n; ++i) {
+            nums1[i] = sorted[i];
+        }
+    }
+
+    public static void merge3(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1, p2 = n - 1;
+        int tail = m + n - 1;
+        int cur;
+        while (p1 >= 0 || p2 >= 0) {
+            if (p1 == -1) {
+                cur = nums2[p2--];
+            } else if (p2 == -1) {
+                cur = nums1[p1--];
+            } else if (nums1[p1] > nums2[p2]) {
+                cur = nums1[p1--];
+            } else {
+                cur = nums2[p2--];
+            }
+//            nums1[tail--] = cur;
+            nums1[p1 + p2 + 2] = cur;
+        }
+    }
 
 }

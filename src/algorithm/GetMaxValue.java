@@ -1,26 +1,28 @@
 package algorithm;
 
 import java.util.Arrays;
+import util.ListNode;
 
 /**
  * created by 80288791 at 2021/7/20
  * description:
  */
 class GetMaxValue {
+
     public static void main(String[] args) {
         int[] arr = {1, 0, 8, 4, 5, 6, 2, 1, 6, 6};
         int count = arr.length / 2;
         System.out.println("初始数组：" + Arrays.toString(arr));
         System.out.println("最大个数count=" + count);
-        Node head = getMaxValue(arr, count);
+        ListNode head = getMaxValue(arr, count);
         while (head != null) {
-            int value = head.value;
+            int value = head.val;
             head = head.next;
             System.out.println(value);
         }
     }
 
-    private static Node getMaxValue(int[] arr, int count) {
+    private static ListNode getMaxValue(int[] arr, int count) {
         if (arr == null) {
             return null;
         }
@@ -30,15 +32,13 @@ class GetMaxValue {
             return null;
         }
 
-        Node head = new Node();
-        head.value = arr[0];
+        ListNode head = new ListNode(arr[0]);
         for (int i = 1; i < count; i++) {
             int value = arr[i];
-            if (value <= head.value) {
-                Node node = new Node();
-                node.value = value;
-                node.next = head;
-                head = node;
+            if (value <= head.val) {
+                ListNode listNode = new ListNode(value);
+                listNode.next = head;
+                head = listNode;
             } else {
                 updateNode(head, value);
             }
@@ -46,7 +46,7 @@ class GetMaxValue {
 
         for (int i = count; i < length; i++) {
             int value = arr[i];
-            if (value > head.value) {
+            if (value > head.val) {
                 updateNode(head, value);
                 head = head.next;
             }
@@ -54,19 +54,18 @@ class GetMaxValue {
         return head;
     }
 
-    private static void updateNode(Node head, int value) {
-        Node node = new Node();
-        node.value = value;
-        Node tmp = head;
+    private static void updateNode(ListNode head, int value) {
+        ListNode listNode = new ListNode(value);
+        ListNode tmp = head;
         while (true) {
-            Node next = tmp.next;
+            ListNode next = tmp.next;
             if (next == null) {
-                tmp.next = node;
+                tmp.next = listNode;
                 break;
             } else {
-                if (value <= next.value) {
-                    tmp.next = node;
-                    node.next = next;
+                if (value <= next.val) {
+                    tmp.next = listNode;
+                    listNode.next = next;
                     break;
                 } else {
                     tmp = next;
@@ -75,8 +74,4 @@ class GetMaxValue {
         }
     }
 
-    private static class Node {
-        public int value;
-        public Node next;
-    }
 }

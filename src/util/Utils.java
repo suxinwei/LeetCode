@@ -38,13 +38,21 @@ public class Utils {
             return;
         }
 
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             System.out.println("列表empty");
             return;
         }
 
         for (Object o : list) {
             System.out.println(o);
+        }
+    }
+
+    public static void printList(ListNode head) {
+        ListNode cur = head;
+        while (cur != null) {
+            System.out.println(cur.val);
+            cur = cur.next;
         }
     }
 }
