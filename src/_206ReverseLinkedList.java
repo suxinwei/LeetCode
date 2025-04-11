@@ -43,7 +43,7 @@ class _206ReverseLinkedList {
         }
         Utils.printList(head);
         System.out.println();
-        Utils.printList(reverseList(head));
+        Utils.printList(reverseList2(head));
     }
 
     public static ListNode reverseList(ListNode head) {
@@ -56,5 +56,15 @@ class _206ReverseLinkedList {
             cur = next;
         }
         return pre;
+    }
+
+    public static ListNode reverseList2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseList2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
 }
