@@ -40,7 +40,7 @@ class _92ReverseBetweenLinkedList {
         }
         Utils.printList(head);
         System.out.println();
-        Utils.printList(reverseBetween(head, 2, 4));
+        Utils.printList(reverseBetween3(head, 2, 4));
     }
 
     public static ListNode reverseBetween(ListNode head, int left, int right) {
@@ -76,6 +76,24 @@ class _92ReverseBetweenLinkedList {
             endPre.next = cur;
         }
         return left == 1 ? pre : head;
+    }
+
+    public static ListNode reverseBetween3(ListNode head, int left, int right) {
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode pre = dummyNode;
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
+        }
+        ListNode cur = pre.next;
+        ListNode next;
+        for (int i = 0; i < right - left; i++) {
+            next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
+        }
+        return dummyNode.next;
     }
 
     public static ListNode reverseBetween2(ListNode head, int left, int right) {
